@@ -6,8 +6,8 @@ import Signin from "./components/Signin"
 export default function App() {
   return (
     <section>
-      {/* <Signup /> */}
-      <Signin />
+      <Signup />
+      {/* <Signin /> */}
     </section>
   )
 }

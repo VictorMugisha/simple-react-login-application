@@ -1,6 +1,10 @@
 import React from 'react'
 
-const Dashboard = () => {
+const Dashboard = (props) => {
+  const {user, logoutSession} = props
+  function handleLogout() {
+    logoutSession(false)
+  }
   return (
     <section>
       <div className="users-data">
@@ -28,7 +32,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <button className="logout-button">Logout</button>
+      <button className="logout-button" onClick={handleLogout}>Logout</button>
     </section>
   )
 }
