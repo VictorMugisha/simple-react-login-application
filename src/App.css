@@ -84,6 +84,31 @@ section {
   background-color: #0056b3;
 }
 
+.form-container .signin-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.form-container .signin-section button {
+  width: 60%;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-container .signin-section button:hover {
+  background-color: #0056b3;
+}
+
 
 /* Header Styles (reused and adjusted if needed) */
 .header {

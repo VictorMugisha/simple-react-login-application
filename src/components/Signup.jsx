@@ -15,6 +15,7 @@ const Signup = () => {
     });
 
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
+    // const [hasAccount, setHasAccount] = useState(true)
 
     const [users, setUsers] = useState(() => {
         // Initializing the users state with data from localStorage, if available
@@ -142,7 +143,11 @@ const Signup = () => {
                             <p>Remember Me</p>
                         </div>
                         <div>
-                            <button className="signup-btn">Create Account</button>
+                            <button className="signup-btn" type='submit'>Create Account</button>
+                        </div>
+                        <div className="signin-section">
+                            <p>Or, already have an account</p>
+                            <button type='button'>Sign in</button>
                         </div>
                     </form>
                 </div>
