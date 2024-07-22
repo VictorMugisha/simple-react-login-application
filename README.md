@@ -1,8 +1,17 @@
-# React + Vite
+# React Signup/Login Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a simple signup/login application built with React and Vite. It provides basic authentication features and uses localStorage to manage user credentials.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User Signup: Allows new users to create an account.
+- User Login: Enables users to log in with their credentials.
+- Dashboard: Displays user-specific content upon successful login.
+- LocalStorage: Stores user data in localStorage for persistent authentication.
+
+## Technologies Used
+
+- **React:** JavaScript library for building user interfaces.
+- **Vite:** Next-generation frontend tooling.
+- **localStorage:** Web API for storing user data on the client side.
+
