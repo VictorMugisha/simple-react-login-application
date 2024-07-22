@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 const Signup = () => {
     const [signupData, setSignupData] = useState({
@@ -8,29 +8,57 @@ const Signup = () => {
         password: '',
         repeatPassword: '',
         rememberMe: false
-    })
+    });
+
+    const [users, setUsers] = useState(() => {
+        // Initializing the users state with data from localStorage, if available
+        const storedUsers = localStorage.getItem('usersData');
+        return storedUsers ? JSON.parse(storedUsers) : [];
+    });
 
     function handleChange(event) {
-        const { name, type, value } = event.target
-        setSignupData(prevData => {
-            if (type === "text" || type === "password") {
-                return {
-                    ...prevData,
-                    [name]: value
-                }
-            } else if (type === "checkbox") {
-                return {
-                    ...prevData,
-                    rememberMe: !prevData.rememberMe
-                }
-            }
-        })
+        const { name, type, value, checked } = event.target;
+        setSignupData(prevData => ({
+            ...prevData,
+            [name]: type === 'checkbox' ? checked : value
+        }));
+    }
+
+    function validatePasswords(pwd1, pwd2) {
+        return pwd1 === pwd2;
     }
 
     function handleSubmit(event) {
-        
-    }
+        event.preventDefault();
 
+        const { firstName, lastName, username, password, repeatPassword, rememberMe } = signupData;
+
+        if (!validatePasswords(password, repeatPassword)) {
+            alert('Passwords need to be the same!!');
+            return;
+        }
+
+        const realData = {
+            firstName,
+            lastName,
+            username,
+            password,
+            rememberMe
+        };
+
+        // Retrieving stored users and check for possible existing username
+        const usersStored = JSON.parse(localStorage.getItem('usersData')) || [];
+
+        if (usersStored.some(user => user.username === username)) {
+            alert('Username already exists');
+            return;
+        }
+
+        // Updating state and localStorage
+        const updatedUsers = [...usersStored, realData];
+        setUsers(updatedUsers);
+        localStorage.setItem('usersData', JSON.stringify(updatedUsers));
+    }
 
     return (
         <section>
@@ -102,7 +130,7 @@ const Signup = () => {
                 </div>
             </form>
         </section>
-    )
+    );
 }
 
-export default Signup
+export default Signup;
