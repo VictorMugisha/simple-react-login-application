@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Signup from "./components/Signup"
 import Signin from "./components/Signin"
 import AuthContext from "./contexts/AuthContext"
@@ -14,7 +14,6 @@ export default function App() {
     setAllUsers(prevUsers => {
       return [...prevUsers, newUser]
     })
-    localStorage.setItem(JSON.stringify(allUsers))
   }
   
   const loggedInUser = allUsers?.find(user => user.isLoggedIn)
@@ -49,6 +48,10 @@ export default function App() {
       })
     })
   }
+
+  useEffect(() => {
+    localStorage.setItem("usersData", JSON.stringify(allUsers))
+  }, [allUsers])
   // const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
   // // const [hasAccount, setHasAccount] = useState(true)
 
@@ -78,7 +81,8 @@ export default function App() {
     allUsers,
     createUser,
     loggedInUser,
-    loginUser
+    loginUser,
+    logoutUser
   }
 
 
