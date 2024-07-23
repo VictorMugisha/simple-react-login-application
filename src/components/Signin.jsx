@@ -1,6 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import AuthContext from '../contexts/AuthContext'
 
 const Signin = () => {
+
+  const { setSignin } = useContext(AuthContext)
+
   const [signinData, setSigninData] = useState({
     username: '',
     password: ''
@@ -14,7 +18,7 @@ const Signin = () => {
       }
     })
   }
-  
+
   return (
     <section>
       <div className="signup-form">
@@ -47,7 +51,7 @@ const Signin = () => {
           </div>
           <div className="signin-section">
             <p>Or, don't have an account yet!</p>
-            <button type='button'>Create Account</button>
+            <button type='button' onClick={() => setSignin(false)}>Create Account</button>
           </div>
         </form>
       </div>

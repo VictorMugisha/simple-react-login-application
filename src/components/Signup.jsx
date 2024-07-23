@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { nanoid } from 'nanoid';
+import AuthContext from '../contexts/AuthContext';
 
 const Signup = () => {
+    const { setSignin } = useContext(AuthContext)
     const [signupData, setSignupData] = useState({
         id: '',
         firstName: '',
@@ -27,7 +29,7 @@ const Signup = () => {
 
     function handleSubmit(evt) {
         evt.preventDefault()
-        
+
         const { firstName, lastName, username, password, repeatPassword, rememberMe } = signupData;
 
         if (!validatePasswords(password, repeatPassword)) {
@@ -118,7 +120,7 @@ const Signup = () => {
                     </div>
                     <div className="signin-section">
                         <p>Or, already have an account</p>
-                        <button type='button'>Sign in</button>
+                        <button type='button' onClick={() => setSignin(true)}>Sign in</button>
                     </div>
                 </form>
             </div>
