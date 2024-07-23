@@ -20,8 +20,26 @@ export default function App() {
   const loggedInUser = allUsers?.find(user => user.isLoggedIn)
 
   function loginUser(username) {
-    setAllUsers()
+    setAllUsers(prevUsers => {
+      return prevUsers.map(user => {
+        if (user.isLoggedIn) {
+          return {
+            ...user,
+            isLoggedIn: false
+          }
+        } else if (user.username === username) {
+          return {
+            ...user,
+            isLoggedIn: true
+          }
+        } else {
+          return user
+        }
+      })
+    })
   }
+
+  
   // const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
   // // const [hasAccount, setHasAccount] = useState(true)
 
@@ -51,6 +69,7 @@ export default function App() {
     allUsers,
     createUser,
     loggedInUser,
+    loginUser
   }
 
 
