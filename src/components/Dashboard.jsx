@@ -1,10 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import AuthContext from '../contexts/AuthContext'
 
-const Dashboard = (props) => {
-  const {user, logoutSession} = props
-  function handleLogout() {
-    logoutSession(false)
-  }
+const Dashboard = () => {
+  const { loggedInUser, logoutUser } = useContext(AuthContext)
   return (
     <section>
       <div className="users-data">
@@ -12,27 +10,23 @@ const Dashboard = (props) => {
         <div className="details">
           <div className="detail">
             <p>First Name:</p>
-            <h3>Victor</h3>
+            <h3>{loggedInUser.firstName}</h3>
           </div>
           <div className="detail">
             <p>Last Name:</p>
-            <h3>Mugisha</h3>
+            <h3>{loggedInUser.lastName}</h3>
           </div>
           <div className="detail">
             <p>Username:</p>
-            <h3>VictorMugisha</h3>
+            <h3>{loggedInUser.username}</h3>
           </div>
           <div className="detail">
             <p>Remember Me:</p>
-            <h3>Yes</h3>
-          </div>
-          <div className="detail">
-            <p>First Name:</p>
-            <h3>Victor</h3>
+            <h3>{loggedInUser.rememberMe ? "Yes" : "No"}</h3>
           </div>
         </div>
       </div>
-      <button className="logout-button" onClick={handleLogout}>Logout</button>
+      <button className="logout-button" onClick={logoutUser}>Logout</button>
     </section>
   )
 }

@@ -1,94 +1,76 @@
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from "react"
+
 import Signup from "./components/Signup"
 import Signin from "./components/Signin"
+import Dashboard from "./components/Dashboard"
+
 import AuthContext from "./contexts/AuthContext"
 
 import './App.css'
 
 export default function App() {
 
-  const storedUsers = JSON.parse(localStorage.getItem("usersData")) || []
-  const [allUsers, setAllUsers] = useState(storedUsers)
+  // const storedUsers = JSON.parse(localStorage.getItem("usersData")) || []
+  // const [allUsers, setAllUsers] = useState(storedUsers)
   
-  function createUser(newUser) {
-    setAllUsers(prevUsers => {
-      return [...prevUsers, newUser]
-    })
-  }
+  // function createUser(newUser) {
+  //   setAllUsers(prevUsers => {
+  //     return [...prevUsers, newUser]
+  //   })
+  // }
   
-  const loggedInUser = allUsers?.find(user => user.isLoggedIn)
+  // const loggedInUser = allUsers?.find(user => user.isLoggedIn)
 
-  function loginUser(username) {
-    setAllUsers(prevUsers => {
-      return prevUsers.map(user => {
-        if (user.isLoggedIn) {
-          return {
-            ...user,
-            isLoggedIn: false
-          }
-        } else if (user.username === username) {
-          return {
-            ...user,
-            isLoggedIn: true
-          }
-        } else {
-          return user
-        }
-      })
-    })
-  }
-
-  function logoutUser() {
-    setAllUsers(prevUsers => {
-      return prevUsers.map(user => {
-        return {
-          ...user,
-          isLoggedIn: false
-        }
-      })
-    })
-  }
-
-  useEffect(() => {
-    localStorage.setItem("usersData", JSON.stringify(allUsers))
-  }, [allUsers])
-  // const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
-  // // const [hasAccount, setHasAccount] = useState(true)
-
-  // const [users, setUsers] = useState(() => {
-  //   // Initializing the users state with data from localStorage, if available
-  //   const storedUsers = localStorage.getItem('usersData');
-  //   return storedUsers ? JSON.parse(storedUsers) : [];
-  // });
-
-
-  // function handleSignupSubmit() {
-  //       // Retrieving stored users and check for possible existing username
-  //   const usersStored = JSON.parse(localStorage.getItem('usersData')) || [];
-
-  //   if (usersStored.some(user => user.username === username)) {
-  //     alert('Username already exists');
-  //     return;
-  //   }
-
-  //   // Updating state and localStorage
-  //   const updatedUsers = [realData, ...usersStored];
-  //   setUsers(updatedUsers);
-  //   localStorage.setItem('usersData', JSON.stringify(updatedUsers));
+  // function loginUser(username) {
+  //   setAllUsers(prevUsers => {
+  //     return prevUsers.map(user => {
+  //       if (user.isLoggedIn) {
+  //         return {
+  //           ...user,
+  //           isLoggedIn: false
+  //         }
+  //       } else if (user.username === username) {
+  //         return {
+  //           ...user,
+  //           isLoggedIn: true
+  //         }
+  //       } else {
+  //         return user
+  //       }
+  //     })
+  //   })
   // }
 
-  const contextValue = {
-    allUsers,
-    createUser,
-    loggedInUser,
-    loginUser,
-    logoutUser
-  }
+  // function logoutUser() {
+  //   setAllUsers(prevUsers => {
+  //     return prevUsers.map(user => {
+  //       return {
+  //         ...user,
+  //         isLoggedIn: false
+  //       }
+  //     })
+  //   })
+  // }
 
+  // useEffect(() => {
+  //   localStorage.setItem("usersData", JSON.stringify(allUsers))
+  // }, [allUsers])
+  
+  // const contextValue = {
+  //   allUsers,
+  //   createUser,
+  //   loggedInUser,
+  //   loginUser,
+  //   logoutUser
+  // }
 
   return (
     <AuthContext.Provider value={contextValue}>
-      <Signup />
+      {
+        loggedInUser ?
+        <Dashboard /> :
+        <Signin />
+      }
     </AuthContext.Provider>
   )
 }

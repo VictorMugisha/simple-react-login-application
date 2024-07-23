@@ -14,13 +14,7 @@ const Signin = () => {
       }
     })
   }
-
-  function handleSubmit(event) {
-    event.preventDefault()
-    // Getting all users from localStorage
-    const allUsers = JSON.parse(localStorage.getItem("usersData")) || []
-    console.log(allUsers)
-  }
+  
   return (
     <section>
       <div className="signup-form">
