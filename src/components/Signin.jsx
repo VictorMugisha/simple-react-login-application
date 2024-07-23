@@ -3,7 +3,7 @@ import AuthContext from '../contexts/AuthContext'
 
 const Signin = () => {
 
-  const { setSignin } = useContext(AuthContext)
+  const { loginUser, setSignin } = useContext(AuthContext)
 
   const [signinData, setSigninData] = useState({
     username: '',
@@ -19,13 +19,19 @@ const Signin = () => {
     })
   }
 
+  function handleLogin(event) {
+    event.preventDefault()
+    // console.log(signinData)
+    loginUser(signinData)
+  }
+
   return (
     <section>
       <div className="signup-form">
         <div className="header">
           <h2>Log Into Your Account</h2>
         </div>
-        <form className="form-container">
+        <form className="form-container" onSubmit={handleLogin}>
           <div className="input">
             <p>Username</p>
             <input

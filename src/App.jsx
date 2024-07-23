@@ -22,7 +22,7 @@ export default function App() {
 
   const loggedInUser = allUsers?.find(user => user?.isLoggedIn)
 
-  function loginUser(username) {
+  function loginUser({ username, password }) {
     setAllUsers(prevUsers => {
       return prevUsers.map(user => {
         if (user.isLoggedIn) {
@@ -30,7 +30,7 @@ export default function App() {
             ...user,
             isLoggedIn: false
           }
-        } else if (user.username === username) {
+        } else if (user.username === username && user.password === password) {
           return {
             ...user,
             isLoggedIn: true
