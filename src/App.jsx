@@ -39,7 +39,16 @@ export default function App() {
     })
   }
 
-  
+  function logoutUser() {
+    setAllUsers(prevUsers => {
+      return prevUsers.map(user => {
+        return {
+          ...user,
+          isLoggedIn: false
+        }
+      })
+    })
+  }
   // const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
   // // const [hasAccount, setHasAccount] = useState(true)
 
