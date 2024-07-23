@@ -20,7 +20,7 @@ export default function App() {
     })
   }
 
-  const loggedInUser = allUsers?.find(user => user.isLoggedIn)
+  const loggedInUser = allUsers?.find(user => user?.isLoggedIn)
 
   function loginUser(username) {
     setAllUsers(prevUsers => {

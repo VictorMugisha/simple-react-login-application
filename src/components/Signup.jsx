@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import AuthContext from '../contexts/AuthContext';
 
 const Signup = () => {
-    const { setSignin } = useContext(AuthContext)
+    const { createUser, setSignin } = useContext(AuthContext)
     const [signupData, setSignupData] = useState({
         id: '',
         firstName: '',
@@ -44,8 +44,10 @@ const Signup = () => {
             username,
             password,
             rememberMe,
-            isLoggedIn
+            isLoggedIn: false
         };
+
+        createUser(realData)
     }
 
     return (
